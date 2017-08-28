@@ -1,0 +1,7 @@
+click
+python-memcached
+six
+termcolor
+urllib3
+boto
+requests
