@@ -4,9 +4,9 @@ FROM phusion/baseimage:0.9.22
 # Update the env below to your user ID for download.seafile.com
 ENV SEAFILE_PRO_USER_ID=xxxxxxxx
 
-ENV UPDATED_AT=20170820 \
+ENV UPDATED_AT=20170929 \
     DEBIAN_FRONTEND=noninteractive \
-    SEAFILE_VERSION=6.1.8
+    SEAFILE_VERSION=6.1.9
 
 # Install our packages
 RUN apt-get update -qq && apt-get -qq -y install memcached mariadb-server \
