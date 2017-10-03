@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Lets run garbage collection to help reduce used space
+
+if [ "$SEAFILE_DISABLE_GC" ]; then
+	exit 0
+fi
+
+/opt/seafile/seafile-server-latest/seaf-gc.sh
+
+exit 0

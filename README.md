@@ -29,21 +29,20 @@ A Docker Image to host Seafile Pro Server.
 
   - Example: `SEAFILE_DOMAIN=seafile.domain.com`
 
+- `SEAFILE_DISABLE_GC` - Disable daily garbage collection cron
+
+  - Example: `SEAFILE_DISABLE_GC=true`
+
 - `IS_HTTPS` - Used to enable HTTPS. Set to anything to enable.
 
   - Example: `IS_HTTPS=true`
 
-- `CI_TEST` - Used when running CI tests on the images to skip the mount check
-
-  - Example: `CI_TEST=true`
-
 ### CI Testing
 
-This image includes basic tests to verify that an image will work correctly. To run tests, you will need to set `CI_TEST` and then call the CI test script in the image.
+This image includes basic tests to verify that an image will work correctly. To run tests, call the CI test script in the image.
 
-- Example: `docker run -it -e CI_TEST=true seafile-pro:latest /sbin/my_init -- /scripts/ci_test.sh`
+- Example: `docker run -it seafile-pro:latest /sbin/my_init -- /scripts/ci_test.sh`
 
 ## To Do
 
 1. Add more checks to CI logic
-2. Investigate Garbage Collection

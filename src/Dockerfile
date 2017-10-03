@@ -58,6 +58,7 @@ RUN mkdir -p /etc/service && \
 ADD my_init.d /etc/my_init.d/
 ADD service /etc/service/
 ADD scripts /scripts
+ADD cron.daily /etc/cron.daily/
 
 # Expose port 80 only. SSL needs to be done upstream by a proxy
 EXPOSE 80
@@ -65,6 +66,5 @@ EXPOSE 80
 WORKDIR /opt/seafile
 
 VOLUME ["/shared/seafile", "/var/lib/mysql"]
-
 
 CMD ["/sbin/my_init", "--", "/scripts/bootstrap.sh"]

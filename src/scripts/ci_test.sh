@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# Used to run CI tests during build
-if [ -z ${CI_TEST+x} ]; then
-	echo "CI: FAIL - CI_TEST env var not set."
-	exit 1
-fi
-
-echo "CI: Making mock volumes"
-mkdir -p /shared/seafile
-
 echo "CI: Setting mock env vars"
 export SEAFILE_ADMIN_EMAIL=test@test.com
 export SEAFILE_ADMIN_PASSWORD=`dd if=/dev/urandom count=1 status=none | sha1sum | awk '{ print $1}'`
@@ -32,6 +23,16 @@ for procs in ${verify_procs[*]}; do
 		exit 1
 	fi
 done
+
+echo "CI: Make sure cron script exists and is executable"
+if [[ ! -e /etc/cron.daily/seafile-pro-gc ]]; then
+	echo "CI: FAIL - Daily garbage collector cron script does not exist."
+	exit 1
+fi
+if [[ ! -x /etc/cron.daily/seafile-pro-gc ]]; then
+	echo "CI: FAIL - Daily garbage collector cron script is not executable."
+	exit 1
+fi
 
 echo "CI: Make sure fingerprint file exists"
 if [[ ! -e /shared/seafile/seafile-data/current_version ]]; then
